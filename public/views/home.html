@@ -1,1 +1,9 @@
-<h2>Home - {{$ctrl.currentUser.name.first}}</h2>
+<div class="home-container">
+
+  <div class="home-title">Home</div>
+
+  <div class="chip-container">
+    <chip ng-repeat="cp in $ctrl.currentUser.chips" chipinfo="cp"/>
+  </div>
+
+</div>
