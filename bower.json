@@ -1,5 +1,5 @@
 {
-  "name": "Jaden",
+  "name": "jaden",
   "version": "1.0.0",
   "dependencies": {
     "bootstrap": "latest",
@@ -10,7 +10,6 @@
     "angular-material": "^1.0.7",
     "angular-ui-router": "1.0.0-beta.3",
     "angular-bootstrap": "^1.3.2",
-    "randomcolor": "^0.4.4",
-    "angular-ui-calendar": "^1.0.1"
+    "randomcolor": "^0.4.4"
   }
 }

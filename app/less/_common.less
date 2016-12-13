@@ -1,3 +1,11 @@
+/*Variables*/
+@background-theme: rgba(34,34,34,1);
+@font-size: 16px;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans');
+
+.jThemeBack { background-color: rgba(164, 66, 244,1) !important;}
+.jThemeFont { color: rgba(164, 66, 244,1) !important; }
+
 * {
   margin: 0;
 }
@@ -5,4 +13,92 @@
 
 html, body {
   height: 100%;
+  font-size: @font-size;
+  font-family: 'PT Sans', sans-serif;
+  background-color: rgba(240,240,240,1);
 }
+
+/* Header */
+.nav-section {
+  background-color: @background-theme;
+  color: rgba(255,255,255,1);
+  .nav-display {
+    display: block;
+    padding: 20px;
+    text-align: center;
+    padding: 40px 0px;
+    .display-header { font-weight: bold; font-size: 2rem; margin-bottom: 20px; }
+    .display-content { width: 100%; padding: 0 30%; font-size: 1.3rem; line-height: 3rem;}
+    .display-welcome {  padding: 0px 20%; font-size: 1.3rem; line-height: 3rem;}
+  }
+
+  .nav-container {
+  	top: 0;
+  	left: 0;
+  	z-index: 100;
+  	width: 100%;
+    margin-bottom: 50px;
+
+    &.screenPass {
+      position: fixed;
+      .navbar {
+        border-color: rgba(0,0,0,1);
+        .container-fluid {
+          .nav-header {
+            &.namebrand { display: block;}
+          }
+        }
+      }
+    }
+
+    .navbar {
+      border-radius: 0px;
+      margin-bottom: 0px;
+      position: relative;
+      z-index: 90;
+      // Add back when fixed
+      border-color: rgba(0,0,0,0);
+      .container-fluid {
+        position: relative;
+        .nav-header {
+          text-align: center;
+          position: absolute;
+          height: 50px;
+          &.namebrand {
+            // Add back when fixed
+            display: none;
+
+            left: 50%;
+            transform: translateX(-50%);
+          }
+          &.notifications {
+            left: 20px;
+          }
+          &.talk {
+            right: 20px;
+            top: 25px;
+            width: 50px;
+            border-radius: 50%;
+          }
+          .brand,.fa {
+            padding: 15px;
+            color: rgba(255,255,255,1);
+            font-size: 20px;
+            line-height: 20px;
+            &:hover { text-decoration: none;}
+          }
+        }
+      }
+    }
+  }
+
+}
+/* Body */
+.contentBody {
+  padding-top:100px;
+
+  // FOR test
+  min-height: 1000px;
+}
+
+/* Footer */

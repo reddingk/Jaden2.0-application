@@ -22,7 +22,7 @@ jadenApp.config(['$stateProvider', '$urlRouterProvider','$locationProvider', fun
     url: "underconstruction",
     views: {
       'content@': {
-        component: 'underConstruction'
+        component: 'underconstruction'
       }
     }
   })
@@ -50,10 +50,64 @@ components.component('all', {
 components.component('home', {
   bindings: {},
 	controller: function () {
-      var vm = this;
-      vm.title = "Home - Title";
-      vm.test = "this is test text in [home]";
+      var vm = this;      
 
    },
    templateUrl: 'views/home.html'
 });
+
+components.component('jHeader', {
+  bindings: {},
+  require: {
+      parent: '^all'
+  },
+  controllerAs: 'hc',
+	controller: function () {
+      var vm = this;
+      vm.username = "Kristopher";
+      vm.welcome = "Have A Good Day!"
+
+   },
+   templateUrl: 'views/templates/_header.html'
+});
+
+components.component('underconstruction', {
+  bindings: {},
+	controller: function () {
+      var vm = this;
+
+   },
+   templateUrl: 'views/underConstruction.html'
+});
+
+directives.directive('navHold', ['$window', function($window) {
+      return {
+        restrict: 'EA',
+        link: function ($scope, element, attrs) {
+
+          angular.element($window).bind("scroll", function() {
+
+            var windowp = angular.element($window)[0];
+            var bodyTop = angular.element(document.getElementsByClassName("contentBody"))[0];
+            var bodyThreshold = bodyTop.offsetTop - element[0].clientHeight;
+
+            var topSection = bodyTop;
+            var topThreshhold = topSection.offsetTop - element[0].clientHeight - 50;
+
+
+            if(windowp.pageYOffset >= topThreshhold){
+              if(!element.hasClass("screenPass")){
+                element.addClass("screenPass");
+              }
+            }
+            else {
+              if(element.hasClass("screenPass")){
+                element.removeClass("screenPass");
+              }
+            }
+
+          });
+        }
+      }
+
+    }]);

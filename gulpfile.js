@@ -9,7 +9,7 @@ var del = require('del');
 var config = {
   src: {
     appJs:[
-      'app/js/config/*.js',      
+      'app/js/config/*.js',
       'app/js/components/*.js',
       'app/js/directives/*.js',
       'app/js/services/*.js'
@@ -29,24 +29,24 @@ var config = {
       'app/libs/angular-ui-router/release/angular-ui-router.min.js',
       'app/libs/angular-bootstrap/ui-bootstrap.min.js',
       'app/libs/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'app/libs/randomcolor/randomColor.js',
-      'app/libs/moment/min/moment.min.js',
-      'app/libs/angular-ui-calendar/src/calendar.js',
-      'app/libs/fullcalendar/dist/fullcalendar.min.js',
-      'app/libs/fullcalendar/dist/gcal.js'
+      'app/libs/randomcolor/randomColor.js'
     ],
     libsCSS: [
       'app/libs/angular-material/angular-material.min.css',
       'app/libs/bootstrap/dist/css/bootstrap.min.css',
       'app/libs/font-awesome/css/font-awesome.min.css',
       'app/libs/animate.css/animate.min.css',
-      'app/libs/angular-bootstrap/ui-bootstrap-csp.css',
-      'app/libs/fullcalendar/dist/fullcalendar.min.css'
+      'app/libs/angular-bootstrap/ui-bootstrap-csp.css'
+    ],
+    libsFonts: [
+      'app/libs/font-awesome/fonts/**',
+      'app/libs/bootstrap/fonts/**'
     ]
   },
   dest:{
     appJs:'public/js',
-    appCSS:'public/css'
+    appCSS:'public/css',
+    appFonts:'public/fonts'
   }
 };
 
@@ -91,8 +91,23 @@ gulp.task('lib-css', function(){
       .pipe(gulp.dest(config.dest.appCSS));
 });
 
-gulp.task('build', function(done){
-  runSequence('clean', ['app-js', 'app-less', 'lib-js', 'lib-css'], done);
+gulp.task('lib-fonts', function(){
+  // Move all fonts files into one the public fonts folder
+  return gulp.src(config.src.libsFonts)
+      .pipe(gulp.dest(config.dest.appFonts));
 });
 
-gulp.task('default', ['build'], function () { });
+gulp.task('build', function(done){
+  runSequence('clean', ['app-js', 'app-less', 'lib-js', 'lib-css','lib-fonts'], done);
+});
+
+gulp.task('watch', function() {
+  gulp.watch(config.src.appJs, ['build']);
+  gulp.watch(config.src.appLess, ['build']);
+  gulp.watch(config.src.libsJs, ['lib-js']);
+  gulp.watch(config.src.libsCSS, ['lib-css']);
+  gulp.watch(config.src.libsFonts, ['lib-fonts']);
+});
+
+//gulp.task('default', ['build'], function () { });
+gulp.task('default', ['watch','build']);

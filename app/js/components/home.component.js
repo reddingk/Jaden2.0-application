@@ -2,9 +2,7 @@
 components.component('home', {
   bindings: {},
 	controller: function () {
-      var vm = this;
-      vm.title = "Home - Title";
-      vm.test = "this is test text in [home]";
+      var vm = this;      
 
    },
    templateUrl: 'views/home.html'

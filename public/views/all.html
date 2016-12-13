@@ -1,6 +1,7 @@
-<div>
-  <h1>{{mc.title}}</h1>
-  <p>{{mc.test}}</p>
-  <!--Main Body Content-->
-  <div class="mainBody" ui-view="content"></div>
-</div>
+<!-- Header -->
+<j-header />
+
+<!-- Body -->
+<div class="contentBody" id="content" ui-view="content" ></div>
+<!-- Notification Footer -->
+<!--<j-footer/>-->

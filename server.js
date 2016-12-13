@@ -36,6 +36,6 @@ app.get('/', function(req, res){
 // set ports
 var port = process.env.PORT || 315;
 
-app.listen(process.env.PORT || port, function () {
+app.listen(port, function () {
    console.log('Application is now open on port: ' + port);
 });

@@ -39,7 +39,7 @@ module.exports = function (app) {
     app.get('/api/users_all', function (req, res) {
         getAllUsers(res);
     });
-    // login user is valid
+    // Check if Users is Valid and Login User
     app.get('/api/users/:name/:pword', function (req, res) {
         loginUsers(req.params.name, req.params.pword, res);
     });

@@ -12,7 +12,7 @@ jadenApp.config(['$stateProvider', '$urlRouterProvider','$locationProvider', fun
     url: "underconstruction",
     views: {
       'content@': {
-        component: 'underConstruction'
+        component: 'underconstruction'
       }
     }
   })
