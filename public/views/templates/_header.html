@@ -1,8 +1,16 @@
 <div class="nav-section">
   <div class="nav-display">
     <div class="display-header jThemeFont">Jaden</div>
-    <div class="display-content">Welcome <span class="jThemeFont">{{ hc.username }}</span> to the Jaden Personal Assistant system.  You will find the home page open with all of your chips below, feel free to ask me anything just remember I am still learning so bear with me.</div>
-    <div class="display-welcome">{{ hc.welcome }}</div>
+    <!-- Logged in -->
+    <div ng-if="hc.isLoggedIn()">
+      <div class="display-content">Welcome <span class="jThemeFont">{{ hc.usr.name.first }}</span> to the Jaden Personal Assistant system.  You will find the home page open with all of your chips below, feel free to ask me anything just remember I am still learning so bear with me.</div>
+      <div class="display-welcome jThemeFont">{{ hc.welcome }}</div>
+    </div>
+    <!-- Not Logged In -->
+    <div ng-if="!hc.isLoggedIn()">
+      <div class="display-content">Hey <span class="jThemeFont">you</span>, Welcome to the Jaden Personal Assistant please login to get full access to all user chips.  If you would like to stay a guest feel free to ask me any questions just remember I am still learning.</div>
+      <div ng-click="hc.login('test', 'test1')">TEST LOGIN</div>
+    </div>
   </div>
 
   <div class="nav-container" nav-hold>

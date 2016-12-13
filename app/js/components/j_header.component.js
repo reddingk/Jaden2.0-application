@@ -1,14 +1,27 @@
 components.component('jHeader', {
-  bindings: {},
-  require: {
-      parent: '^all'
+  bindings: {
+    usr: '='
   },
   controllerAs: 'hc',
-	controller: function () {
+	controller: function ($state, $rootScope, jInfo) {
       var vm = this;
-      vm.username = "Kristopher";
+
       vm.welcome = "Have A Good Day!"
 
+      vm.isLoggedIn = function(){
+        return (vm.usr._id != undefined);
+      }
+
+      vm.login = function(uname, pwd){
+        jInfo.user.loginUser(uname, pwd, function(res){
+          var loggedIn = res;
+          if(loggedIn){
+            vm.usr = jInfo.user.getCurrent();
+            $state.go('app');
+          }
+          else { }
+        });
+      }
    },
    templateUrl: 'views/templates/_header.html'
 });

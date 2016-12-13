@@ -10,9 +10,9 @@ var config = {
   src: {
     appJs:[
       'app/js/config/*.js',
+      'app/js/services/*.js',
       'app/js/components/*.js',
-      'app/js/directives/*.js',
-      'app/js/services/*.js'
+      'app/js/directives/*.js'
     ],
     appLess: [
       'app/less/**/*.less'

@@ -8,6 +8,14 @@ jadenApp.config(['$stateProvider', '$urlRouterProvider','$locationProvider', fun
       }
     }
   })
+  .state('app.login', {
+    url: "login",
+    views: {
+      'content@': {
+        component: 'login'
+      }
+    }
+  })
   .state('app.construction', {
     url: "underconstruction",
     views: {
@@ -15,7 +23,7 @@ jadenApp.config(['$stateProvider', '$urlRouterProvider','$locationProvider', fun
         component: 'underconstruction'
       }
     }
-  })
+  });
 
 
   $urlRouterProvider.otherwise('/');
