@@ -1,5 +1,6 @@
-<div class="chip-container crd2">
-  <div class="chip-crd">
-    <div class="chip-title">{{$ctrl.chipinfo.name}}</div>
-  </div>
+<div class="chip-container" ng-class="$ctrl.getChipSize($ctrl.chipinfo.settings.size)">
+
+  <!-- https://www.google.com/search?q=block+dashboard+design+layout&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiUnsHfw_TQAhWHi5AKHemEB40Q_AUICCgB&biw=1624&bih=805#imgrc=Ftc2UFA17MeddM%3A -->
+  <!-- Chip Template -->
+  <div class="chip-template" ng-include="$ctrl.chipinfo.settings.template"></div>
 </div>

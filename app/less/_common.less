@@ -1,10 +1,16 @@
 /*Variables*/
+@mobile-screen: ~"only screen and (max-width: 640px)";
+
 @background-theme: rgba(34,34,34,1);
 @font-size: 16px;
+
+/*Theme colors*/
+@theme-purple: rgba(164, 66, 244,1);
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans');
 
-.jThemeBack { background-color: rgba(164, 66, 244,1) !important;}
-.jThemeFont { color: rgba(164, 66, 244,1) !important; }
+.jThemeBack { background-color: @theme-purple !important;}
+.jThemeFont { color: @theme-purple !important; }
 
 * {
   margin: 0;
@@ -28,7 +34,14 @@ html, body {
     text-align: center;
     padding: 40px 0px;
     .display-header { font-weight: bold; font-size: 2rem; margin-bottom: 20px; }
-    .display-content { width: 100%; padding: 0 30%; font-size: 1.3rem; line-height: 3rem;}
+    .display-content {
+      width: 100%;
+      padding: 0 30%;
+      font-size: 1.3rem;
+      line-height: 3rem;
+
+      @media @mobile-screen { padding: 0 10%; }
+    }
     .display-welcome {  padding: 0px 20%; font-size: 1.3rem; line-height: 3rem;}
   }
 
@@ -95,7 +108,7 @@ html, body {
 }
 /* Body */
 .contentBody {
-  padding: 100px 30px 50px;
+  padding: 100px 0px 50px;
 
   // FOR test
   min-height: 1000px;

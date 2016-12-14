@@ -12,20 +12,28 @@
       .chip-container {
         display: inline-block;
         float: left;
-        padding: 10px;
-        &.crd2 { width: 50%; }
-
-        .chip-crd {
-          border: 2px solid rgba(0,0,0,1);
-          //background-color:rgba(34,34,34,1);
+        position: relative;
+        &.crd1 {
+          width: 20%;
+          @media @mobile-screen { width: 50%; }
+        }
+        &.crd2 {
+          width: 40%;
+          @media @mobile-screen { width: 50%; }
+        }
+        &.crd3 {
+          width: 60%;
+          @media @mobile-screen { width: 100%; }
+        }
+        &.crd4 {
+          width: 80%;
+          @media @mobile-screen { width: 100%; }
+        }
+        &.crd5 {
           width: 100%;
-          padding: 20px;
-
-          .chip-title {
-            font-weight: bold;
-            color: rgba(0,0,0,1);
-            text-align: center;
-          }
+        }
+        .chip-template {
+          position: relative;
         }
       }
     }

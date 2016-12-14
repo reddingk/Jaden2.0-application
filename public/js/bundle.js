@@ -43,6 +43,11 @@ dataconfig.service('jInfo', ['jData', '$filter', 'userService', function JInfo(j
           callback({"error":"INVALID PRIVILEGES"});
         }
       }
+    },
+    chips:{
+      library: function(){
+        return jData.chipsLibrary;
+      }
     }
   }
 }])
@@ -50,6 +55,17 @@ dataconfig.service('jInfo', ['jData', '$filter', 'userService', function JInfo(j
   function JInfoData(){
     var vm = this;
     vm.currentUser = {};
+
+    vm.chipsLibrary = {
+      "default":{"size":2, "template": "views/chips/_templates/default.html", "icon":"fa fa-circle-o-notch"},
+      "settings":{"size":1, "template": "views/chips/_templates/settings.html", "icon":"fa fa-cogs"},
+      "weather":{"size":4, "template": "views/chips/_templates/weather.html", "icon":"fa fa-sun-o"},
+      "camera":{"size":2, "template": "views/chips/_templates/default.html", "icon":"fa fa-camera"},
+      "social_apps":{"size":2, "template": "views/chips/_templates/default.html", "icon":"fa fa-circle-o-notch"},
+      "maps":{"size":2, "template": "views/chips/_templates/default.html", "icon":"fa fa-map-o"},
+      "google":{"size":1, "template": "views/chips/_templates/default.html", "icon":"fa fa-google"},
+      "dinner_time":{"size":2, "template": "views/chips/_templates/default.html", "icon":"fa fa-cutlery"}
+    };
 
     vm.setCurrentUser = function(user){
       vm.currentUser = user;
@@ -164,6 +180,9 @@ components.component('chip', {
       var vm = this;
       vm.currentUser = jInfo.user.getCurrent();
 
+      vm.getChipSize = function(size){
+        return "crd"+size;
+      }
    },
    templateUrl: 'views/chips/chip.html'
 });
@@ -172,7 +191,74 @@ components.component('home', {
   bindings: {},
 	controller: function ($state, jInfo) {
       var vm = this;
-      vm.currentUser = jInfo.user.getCurrent();      
+      vm.currentUser = jInfo.user.getCurrent();
+
+      var chipsLib = jInfo.chips.library();
+
+      /* Functions */
+      vm.getChipTemplate = function(name){
+        if(chipsLib[name] != undefined){
+          return chipsLib[name].template;
+        }
+        else {
+          return chipsLib.default.template;
+        }
+      }
+
+      vm.jigsaw = function(chips){
+        // Set Chip Settings
+        for(var i=0; i < chips.length; i++){
+          if(chipsLib[chips[i].name] != undefined){
+            chips[i].settings = chipsLib[chips[i].name];
+          }
+          else {
+            chips[i].settings = chipsLib.default;
+          }
+        }
+        // adjust chips
+        var tmpChips = chips;
+        var jigsawChips = [];
+        var rowLength = 0;
+
+        while(tmpChips.length > 0){
+          if(jigsawChips.length == 0 || rowLength == 0){
+            rowLength += tmpChips[0].settings.size;
+            jigsawChips.push(tmpChips[0]);
+            tmpChips.splice(0,1);
+          }
+          else {
+            rowLength = (rowLength >= 5 ? 0 : rowLength);
+            // find next piece
+            // check for piece size
+            var pSize = -1;
+            for(var j= (5 - rowLength); j > 0; j--){
+              var validPieces = $.grep(tmpChips, function(e){ return e.settings.size == j });
+              if(validPieces.length > 0){
+                pSize = j;
+                break;
+              }
+            }
+            if(pSize > 0) {
+              //find piece with size
+              for(var i =0; i < tmpChips.length; i++){
+                if(tmpChips[i].settings.size == pSize){
+                  rowLength += tmpChips[i].settings.size;
+                  jigsawChips.push(tmpChips[i]);
+                  tmpChips.splice(i,1);
+                  break;
+                }
+              }
+            }
+            else {
+              rowLength = 0;
+            }
+
+          }
+        }
+        return jigsawChips;
+      }
+
+      vm.userChips = vm.jigsaw(vm.currentUser.chips);
 
    },
    templateUrl: 'views/home.html'

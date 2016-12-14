@@ -6,6 +6,9 @@ components.component('chip', {
       var vm = this;
       vm.currentUser = jInfo.user.getCurrent();
 
+      vm.getChipSize = function(size){
+        return "crd"+size;
+      }
    },
    templateUrl: 'views/chips/chip.html'
 });

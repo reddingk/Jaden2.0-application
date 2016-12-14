@@ -1,0 +1,61 @@
+.chip-crd {
+  position: relative;
+
+  .chip-body {
+    overflow: hidden;
+    position: relative;    
+    border: 1px solid rgba(0,0,0,0.5);
+
+    width: 100%;
+    padding: 20px;
+    height: 200px;
+
+    .chip-title {
+      position: relative;
+      z-index: 5;
+      font-weight: bold;
+      color: rgba(0,0,0,1);
+      text-align: left;
+    }
+    .chip-content { }
+    .chip-back {
+      position: absolute;
+      top:0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      .chip-mask {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        // default color
+        background-color: rgba(230,230,230,1);
+        opacity: 0.3;
+        transition: 0.5s all ease;
+      }
+      .chip-icon {
+        font-size: 7rem;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+      }
+    }
+  }
+  &:hover { .chip-mask { opacity: 0.7 !important; }}
+  &.default {
+    .chip-mask { background-color: @theme-purple !important; }
+  }
+  &.settings {
+    .chip-mask { background-color: rgba(200,200,200,1) !important; }
+  }
+  &.weather {
+    .chip-mask { background-color: rgba(66, 134, 244,1) !important; }
+  }
+}
