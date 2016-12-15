@@ -1,7 +1,8 @@
 /*Variables*/
 @mobile-screen: ~"only screen and (max-width: 640px)";
 
-@background-theme: rgba(34,34,34,1);
+@nav-background: rgba(0,0,0,1);
+@background-theme: rgba(43,41,42,1);
 @font-size: 16px;
 
 /*Theme colors*/
@@ -21,12 +22,13 @@ html, body {
   height: 100%;
   font-size: @font-size;
   font-family: 'PT Sans', sans-serif;
-  background-color: rgba(240,240,240,1);
+  background-color: @background-theme;
+  color: rgba(255,255,255,1);
 }
 
 /* Header */
 .nav-section {
-  background-color: @background-theme;
+  background-color: @nav-background;
   color: rgba(255,255,255,1);
   .nav-display {
     display: block;
@@ -71,6 +73,7 @@ html, body {
       z-index: 90;
       // Add back when fixed
       border-color: rgba(0,0,0,0);
+      background-color: @nav-background !important;
       .container-fluid {
         position: relative;
         .nav-header {
@@ -108,7 +111,7 @@ html, body {
 }
 /* Body */
 .contentBody {
-  padding: 100px 0px 50px;
+  padding: 0px 0px 50px;
 
   // FOR test
   min-height: 1000px;

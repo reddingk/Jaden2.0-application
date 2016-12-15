@@ -1,11 +1,32 @@
 .home-container {
-  .home-title {
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(34,34,34,1);
-    padding-top: 20px;
-    margin-bottom: 20px;
+  .home-card {
+    display: inline-block;
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    position: relative;
+
+    .home-title { }
+    .home-content { }
+    .home-back {
+      position: absolute;
+      top:0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      .back-mask {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        // default color
+        background-color: @theme-purple;
+        opacity: 0.3;
+        transition: 0.5s all ease;
+      }
+    }
   }
   .chip-container {
     chip {
