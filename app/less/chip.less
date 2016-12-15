@@ -3,7 +3,7 @@
 
   .chip-body {
     overflow: hidden;
-    position: relative;    
+    position: relative;
     border: 1px solid rgba(0,0,0,0.5);
 
     width: 100%;
@@ -32,7 +32,7 @@
         width: 100%;
         height: 100%;
         // default color
-        background-color: rgba(230,230,230,1);
+        background: rgba(230,230,230,1);
         opacity: 0.3;
         transition: 0.5s all ease;
       }
@@ -50,12 +50,12 @@
   }
   &:hover { .chip-mask { opacity: 0.7 !important; }}
   &.default {
-    .chip-mask { background-color: @theme-purple !important; }
+    .chip-mask { background: linear-gradient(171deg, rgba(240,93,93,1) 0%, rgba(240,93,93,1) 11%, @theme-purple 50%, @theme-purple 100%) !important; }
   }
   &.settings {
-    .chip-mask { background-color: rgba(200,200,200,1) !important; }
+    .chip-mask { background: rgba(200,200,200,1) !important; }
   }
   &.weather {
-    .chip-mask { background-color: rgba(66, 134, 244,1) !important; }
+    .chip-mask { background: linear-gradient(141deg, rgba(15,184,173,1) 0%, rgba(31,200,219,1) 51%, rgba(44,181,232,1) 75%) !important; }
   }
 }
